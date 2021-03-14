@@ -1,0 +1,59 @@
+doctype html
+html
+  head
+    title #{title} | #{h.projectName}
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="preconect" href="https://fonts.gstatic.com")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap")
+    link(rel='stylesheet' href="/dist/main.css")
+    block scripts
+    
+  body
+    
+    
+    block navbar
+      nav.navbar
+        .container  
+          .main-nav
+            a.link--logo(href="/")
+              h1.logo.logo--nav Romato
+            .avatar
+              if user
+                a(href="/user/dashboard")
+                  .avatar__image
+                    if user.photo
+                      img(src=`/uploads/users/${user.photo}`)
+                    else
+                      img(src="/images/photos/romato/wine_2x.webp")
+              else
+                a(href="/signin")
+                  != h.icon('avatar')
+            .back
+              a(onclick= "window.history.back()")
+                i.icon.icon--back(color="#1C1C1C" size="16")
+                  != h.icon('back')
+    
+    block messages
+      if locals.flashes
+        .container.container--flashes
+          .flash-messages
+            - const categories = Object.keys(locals.flashes)
+            each category in categories
+              each message in flashes[category]
+                .flash(class=`flash--${category}`)
+                  p.flash__text!= message
+                  button.flash__remove(onClick="this.parentElement.remove()") &times;  
+
+    main(role="main" class="main")
+      block main 
+
+    block footer
+      footer
+        .container
+          .footer__box
+            h3.logo.logo--footer Romato 
+            pre Romato Enterprises &copy; 2021
+
+    script(src="/dist/App.bundle.js")
+    block scripts

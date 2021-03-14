@@ -1,0 +1,11 @@
+extends layout
+
+include mixins/_review
+
+block main
+  .container
+    h2.section__title Your Reviews
+    each review in reviews
+      +review(review, review.store)
+      
+  

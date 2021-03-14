@@ -1,0 +1,7 @@
+mixin collectionCard({ name, slug })
+  article.card.card--collection
+    a.card__link(href=`/${slug}`)
+      a(href=`/${slug}`)
+        h4.card__title.card__title--collection= name  
+          span.arrow  →
+    

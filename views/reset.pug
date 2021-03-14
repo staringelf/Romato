@@ -1,0 +1,9 @@
+extends layout
+
+include mixins/_resetForm
+
+block main
+  .container.container--form
+    form.form.form--password(method="POST")
+      h3.form__title.form__title--forgot Change Password ?
+      +resetForm()

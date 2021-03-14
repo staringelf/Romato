@@ -1,0 +1,15 @@
+extends layout
+
+include mixins/_userForm
+include mixins/_resetForm
+
+block main
+  .container.container--form
+    +userForm(user)
+    .divider
+      hr.divider__hr
+    form.form.form--password(action="/user/change" method="POST")
+      h3.form__title.form__title--forgot Change Password ?
+      label(for="password-current") Enter current Password
+      input.input(type="password" name="password-current" required)
+      +resetForm()  

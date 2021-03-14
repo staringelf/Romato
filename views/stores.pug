@@ -1,0 +1,25 @@
+extends layout
+
+include mixins/_storeCard
+include mixins/_pagination
+
+block main
+  header.hero
+    .hero__box(style="display: grid; place-items: center;")
+      if stores.length
+        h2.section__title= title
+          p.section__subtitle Your search for the city's #{title} restaurants ends here
+      else 
+        p.section__subtitle No results for your search
+  
+  if stores.length
+    section.stores
+      .container
+        ul.cards.cards--store
+            each store in stores 
+              +storeCard(store, showRatings)
+    if page
+      section.pagination
+        +pagination(page, pages, count)
+      
+block footer

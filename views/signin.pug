@@ -1,0 +1,10 @@
+extends layout  
+
+include mixins/_loginForm
+include mixins/_signupForm
+
+block main
+  +loginForm()
+  +signupForm(body)
+
+block footer

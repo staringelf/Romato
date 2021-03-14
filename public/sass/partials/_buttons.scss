@@ -1,0 +1,45 @@
+$clr--red: rgba(236, 70, 84, 0.9);
+
+.btn{
+  display: inline-block;
+  border: none;
+  
+  &--primary {
+    border-radius: .5rem;
+    padding: 1em;
+    width: 100%;
+    background-color: $clr--red;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0.4rem 0.6rem;
+    color: $clr--white;
+    min-width: 9.4rem;
+    min-height: 44px;
+    letter-spacing: 2px;
+    margin-bottom: .5em;
+    cursor: pointer;
+  }
+  
+
+  &--small {
+    width: 50%;
+    margin:  0 auto; 
+  }
+
+  &--secondary {
+    color: rgb(237, 90, 107);
+    margin-left: 2px;
+  }
+}
+
+.delete-account {
+  color: #afafaf;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 800px) {
+  .btn{
+    
+    &--delete{
+      font-size: 1rem;
+    }
+  }
+}

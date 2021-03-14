@@ -1,0 +1,33 @@
+.navbar{
+  box-shadow: $shad;
+  width: 100%;
+  background-color: $clr--white;
+}
+
+.main-nav{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px 10px 0px;
+  align-items: center;
+}
+
+.back{
+  order: -1;
+  // background: chocolate;
+  transform: translateY(5%);
+}
+
+.avatar{
+  // background: chocolate;
+  transform: translateY(6%);
+}
+
+.nav__signin {
+  display: none;
+}
+
+@media only screen and (min-width: 800px) {
+  .nav__signin {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,11 @@
+mixin pagination(page= 1, pages= 1, count = 4)
+  .container
+    section.pagination
+      .pagination__prev
+        if page > 1
+          a.link(href=`/stores/page/${page - 1}`) Prev
+      .pagination__goto
+        span Page #{page} of #{pages} 
+      .pagination__next
+        if page < pages
+          a(href=`/stores/page/${parseFloat(page) + 1}`) Next 

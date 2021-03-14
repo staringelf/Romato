@@ -1,0 +1,114 @@
+$clr--dark: #4f4f4f;
+$fs--3: clamp(1.4rem, 1.4rem + 0.75vw, 1.7rem);
+$fs--7: clamp(1rem, 1rem + 0.6vw, 1.4rem);
+
+.input{
+  min-width: 9.4rem;
+  min-height: 44px;
+  display: block;
+  width: 100%;
+  padding: .86rem .65rem;
+  border-radius: 0.5rem;
+  font-family: 'lato';
+  letter-spacing: 1px;
+  border: 1px solid rgba(207, 207, 207);
+  font-size: 18px;
+  margin-bottom: 15px;
+
+  &:focus{
+    background-color: $clr--white;
+    border-color: rgb(0, 153, 153);
+    box-shadow:  0 1px 1px rgba(0, 0, 0, 0.075) inset 0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+  }
+
+  &--search{
+    font-family: 'lato', sans-serif;  
+    width: 100%;
+    padding: 1.2em 0;
+    border-radius: 0.5rem;
+    height: 3rem;
+    padding-left: 1em;
+    letter-spacing: .5px;
+    display: inline-block;
+    border: 1px solid #efefef;
+    box-shadow: rgba(28, 28, 28, 0.05) 0px 8px 12px;
+    margin-bottom: .4em;
+  }
+
+}
+
+.form{
+  position: relative;
+  padding: 1em 0 2em 0;
+
+  &--search{
+    padding: 0;
+  }
+
+  &--restaurant .input {
+    font-size: $fs--5;
+  }
+  
+  &--location {
+    display: flex; 
+    align-items: stretch; 
+    flex-wrap: wrap; 
+    padding: 10px 0
+  }
+
+  &__title{
+    color: $clr--dark;
+    margin-bottom: 1em;
+    font-weight: 600;
+    font-size: $fs--3;
+  
+    &--forgot {
+      font-size: $fs--7;
+    }
+  }
+
+}
+
+
+label {
+  display: inline-block;
+  margin-bottom: .2em;
+}
+
+@media only screen and (min-width: 800px) {
+  .form {
+    padding: 5em  0 2em 0;
+
+    &--forgot {
+      padding: 1em 0 5em 0;
+    }
+    
+    &--search{
+      padding: 0;
+    }
+    
+    &--location {
+      padding: 1em 0 2em 0;
+    }
+  }
+  
+  label {
+    display: inline-block;
+    margin-bottom: .25em;
+
+    span {
+      color: $clr--red;
+    }
+  }
+}
+
+.rules {
+  margin-bottom: 1em;
+}
+
+textarea.input {
+  height: 100px;
+  max-width: 100%;
+  min-width: 100%;
+}

@@ -1,0 +1,5 @@
+mixin forgotForm()
+ form.form.form--forgot(action="/forgot" method="POST")
+      h3.form__title.form__title--forgot Forgot Password ?
+      label(for="forgot-email") Enter your Email
+      input.input(type="email" id="forgot-email" name="email" placeHolder="Email" required)

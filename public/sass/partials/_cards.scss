@@ -1,0 +1,191 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-auto-rows: 180px;
+  grid-gap: .5rem;
+  &--food {
+    grid-gap: .5rem;
+  }
+
+  &--collection{
+    grid-auto-rows: 180px;
+  }
+
+  &--store{
+    grid-auto-rows: 240px;
+  }
+  
+}
+
+.card{
+  overflow: hidden;
+  border-radius: .4rem;
+  transition: all 300ms ease;
+  cursor: pointer;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+
+  &__image{
+    &--food{
+      height: 80%;
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right:0;
+    top: 70%;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    background-color: $clr--white;
+    z-index: 200;
+  
+    &--food{
+      top: 75%;
+    }
+  }
+  
+  
+  &--store {
+      max-width: 200px;
+  }
+
+  &--food {
+    border-radius: .76rem;
+    height: auto;
+    color: rgb(54, 54, 54);
+    border: 1px solid #e8e8e8;
+    
+    &:hover, 
+    &:focus{
+      transform: scale(1.05);
+    }
+
+
+  }
+  
+  &__hero {
+    overflow: hidden;
+    max-height: 45%;
+  }
+
+  //collection
+
+  &__title--collection{
+    position: absolute;
+    bottom: 10%;
+    left: 2%;
+    white-space: nowrap;
+  }
+
+  &__link {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+
+  &--collection {
+    background-image: url('../images/photos/romato/trending.jpg');
+    background-image: url('../images/photos/romato/trending.jpg'), $linear-grad;
+    @include background-image;
+    background-position: left;
+    background-blend-mode: multiply;
+  }
+
+ 
+}
+
+.rating {
+  display: flex;
+  margin-bottom: .2em;
+  
+  &__value {
+    margin-left: 4px;
+    font-size: $fs--small; 
+    display: grid;
+    place-items: center;
+  }
+
+  &__votes {
+    margin-left: 5px;
+    font-size: $fs--small; 
+    display: grid;
+    place-items: center;
+  }
+
+}
+
+@media only screen and (min-width: 600px) {
+  .cards--store{
+    justify-items: center;
+  }
+  
+  .card__hero{
+    max-height: 60%;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width:700px){
+  .cards {
+    &--store {
+      grid-auto-rows: 250px;
+    }
+  }
+  .card {
+    &--store{
+      max-width: 350px;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 770px) and (max-width:850px){
+  .cards {
+    &--store {
+      grid-auto-rows: 280px;
+    }
+  .card {
+    &--store{
+      max-width: 350px;
+    }
+  }
+  }
+}
+
+
+@media only screen and (min-width: 850px) {
+  .cards{
+    grid-auto-rows: 240px;
+    &--store{
+      grid-auto-rows: 320px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  
+  }
+
+  .card{
+    &__image{
+      height: 100%;
+    }
+    &--store{
+      max-width: 350px;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1020px) and (max-width:1120px){
+  .cards {
+    &--store {
+      grid-auto-rows: 350px;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+extends layout
+
+include mixins/_storeCard
+include mixins/_pagination
+
+block main
+  header.hero
+    .hero__box
+      h2.section__title= title
+      p.section__subtitle Your search for the city's #{title} restuarants end here
+
+  if stores.length
+    section.collection
+      .container
+        ul.cards.cards--store
+            each store in stores 
+              +storeCard(store, showRatings)

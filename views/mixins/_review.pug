@@ -1,0 +1,23 @@
+mixin review(review, store={})
+  article.review
+    .review__header
+      .review__author
+        .avatar
+          .avatar__image
+            if review.author.photo
+              img(src=`/uploads/users/${review.author.photo}`)
+            else
+              img(src="/images/photos/romato/wine_2x.webp")
+        h4.review__writer= review.author.name
+      p.review__rating(title=`Rated ${review.rating} our of 5 stars`)
+        =`★`.repeat(review.rating)
+        = `☆`.repeat(5 - review.rating)
+      time.review__time(datetime=review.created)= h.moment(review.created).fromNow()
+  
+    .review__body
+      p= review.review
+      if !h.isEmpty(store)
+        a.link.review__store(href=`/store/${store.slug}`)= store.name
+      if !h.isEmpty(store)
+        i.icon.icon--delete(data-id=`${review._id}`)
+          != h.icon('delete')

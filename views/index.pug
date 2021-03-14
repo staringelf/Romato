@@ -1,0 +1,76 @@
+extends layout
+
+include mixins/_searchBar
+include mixins/_collectionCard
+
+block scripts
+  script(src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8")
+  script(src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8")
+
+block navbar
+  nav.navbar
+    .container  
+      .main-nav
+        a.link--logo(href="#")
+          h1.logo.logo--nav Romato
+        .avatar
+          if user
+            a(href="/user/dashboard")
+              .avatar__image
+                if user.photo
+                  img(src=`/uploads/users/${user.photo}`)
+                else
+                  img(src="/images/photos/romato/wine_2x.webp")
+          else
+            a(href="/signin")
+              i.icon.icon--avatar(color="#ED5A68" size="18")
+                != h.icon('avatar')
+block main
+  header.hero
+    .hero__box
+      h2.section__title.section__title--hero.section__title--home romato
+      p.section__subtitle.section__subtitle--hero Discover the best food &amp; drinks in your city
+      +searchBar()
+  section.food_cards
+    .container
+      h2.section__title Quench your Thirst
+      .cards.cards--food
+        each search in quickSearches
+          .card.card--food
+            .card__image.card__image--food
+              a.link(href=`/results/stores?q=${search}`)
+                -const trimmedSearch = search.split(' ').join('').toLowerCase();
+                  img(src=`/images/photos/romato/${trimmedSearch}.jpeg`, alt=`${search}`)
+            a.link.card__caption.card__caption--food(href=`/results/stores?q=${search}`)= search
+  
+  section.collection_cards
+    .container
+      h2.section__title Collections
+      p.section_subtitle Explore curated list of top restaurants, cafes, pubs, and bars 
+      .cards.cards--collection
+        each collection in collections
+          +collectionCard(collection)
+  
+  section.explore
+    .container
+      h2.section__title Explore other options for you here
+      
+      h3.section__title--secondary Popular cuisines 
+      -const foods = ['Bakery', 'Beverages', 'Burgers', 'Pizzas', 'Ice Creams', 'Sandwiches', 'Italian', 'South Indian']
+      ul.quick_searches
+        each food in foods
+          li.quick_search
+            a(href=`/results/stores?q=${food}`) #{food} food 
+      
+      h3.section__title--secondary Popular restaurant types 
+      -const  categories = ['Bakeries', 'Bhojanalayas', 'Beverage shops', 'Quick Bites', 'Food Courts', 'Lounge', 'Clubs']
+      ul.quick_searches
+        each category in categories
+          li.quick_search
+            a(href=`/results/stores?q=${category}`) #{category} 
+      
+      h3.section__title--secondary Search By Location
+      .form.form--location(action="" method="GET" id="location-form")
+        input.input.input--location(id="location-input" type="text" name="location" placeholder="Your Address" autocomplete="off" style="flex: 7 1 400px; margin-bottom: 0" required)
+        a.btn.btn--primary.btn--small( href="#" id="location-submit" style="min-width: unset; flex: 1 1 50px; padding: 5px; display: grid; place-items: center") Go
+  

@@ -1,0 +1,94 @@
+.bookmark{ //is a form
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  outline: 0 none;
+  padding: 0 .25em .5em .25em;
+  text-align: right;
+}
+
+.svg--bookmark{
+  fill: #fff;
+}
+
+.icon--red{
+  svg{
+    fill: rgb(237, 90, 107);
+  }
+}
+
+//not used yet
+.svg--white{
+  fill: #fff
+}
+
+.edit{
+  position: absolute;
+  top: 2.5%;
+  right: 5%;
+  outline: 0 none;
+  padding: 0 .25em .5em .25em;
+  text-align: right;
+}
+
+
+.icon{
+
+  &--chevron{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-40%);
+  }
+  
+  &--delete{
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 1px;
+    position: absolute;
+    box-shadow: none;
+    right: 1px;
+    width: min-content;
+    bottom: -2px;
+    height: min-content;
+    min-width: unset;
+    max-width: unset;
+    font-size: .8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  &--avatar{
+     padding: .1em 0 .1em .5em;
+  }
+}
+
+.avatar{
+
+  &__image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  img{
+    display: inline-block;
+    border-radius: 50px;
+  }
+}
+
+.close-feedback{
+    position: absolute;
+    border-radius: 20px;
+    height: 30px;
+    width: 30px;
+    right: 1px;
+    top: 1px;
+    font-size: 22px;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

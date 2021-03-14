@@ -1,0 +1,30 @@
+mixin storeCard (store = {}, showRatings = true)
+  li.card.card--store
+    .card__hero
+      a(href=`/store/${store.slug}`)
+        img.card__image.card__image--store(src=`/uploads/stores/${store.photo || 'fallback.jpg'}`)
+        if user
+          form.bookmark(action=`/api/v1/store/${store._id}/bookmark` method="POST")
+            //-
+              const bookmarks = user.bookmarks.map(obj => obj.toString())
+            -const fillRedClass = user.bookmarks.includes(store._id.toString()) ? 'icon--red' : ''; 
+            button(type="submit" name="bookmark")
+              i(class=`icon icon--bookmark ${fillRedClass}` size="13")
+                != h.icon('bookmark')
+    .card__desc.card__desc--store(style="position: relative")
+      a(href=`/store/${store.slug}`)
+        h4.card__title.card__title--store= store.name
+      
+      if user && store.author.equals(user._id)
+        a.edit(href=`/user/store/${store._id}/edit`)
+          i(class="icon icon--pencil" color="#fff" size="13")
+            != h.icon('pencil')
+      if showRatings
+        .rating
+          i.icon--rating(class="icon icon--review" size="13" color="#1C1C1C")
+            != h.icon('rating')
+          span.rating__value=(Math.round(store.avgRating * 100)/100 || 'No reviews yet') 
+          -const [prefix, suffix] = store.votes ? ['(', ')'] : ['', ''] 
+          span.rating__votes= `${prefix}${store.votes || ''}${suffix}`
+      p.card__address= store.location.address
+      p.card__desc #{store.description.split('').slice(0, 31).join('')}...

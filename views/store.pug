@@ -1,0 +1,51 @@
+extends layout
+
+include mixins/_feedback
+include mixins/_review
+include mixins/_stickyActions
+
+block main
+  -rating = rating || {}
+  header.hero.hero--store(style=`background-image: url(/uploads/stores/${store.photo || 'fallback.jpg'})`)
+    .textbox
+      h2.store__title= store.name
+  +stickyActions(store)
+  +feedback(store)  
+
+
+  section.store__details(data-id=`${store._id}`)
+    .container
+      h2.store__name= store.name
+      p.store__description= store.description
+      p.store__address= store.address
+      p.store__timing #{store.timings[0]} AM - #{h.formatTime(store.timings[1])} PM <span class="timequote"> Closes in 1 hour 33 minutes
+      .rating
+        i.icon--rating(class="icon icon--review" size="13" color="#1C1C1C")
+          != h.icon('rating')
+        span.rating__value=(Math.round(rating.avg * 100)/100 || 'No reviews yet') 
+        -const [prefix, suffix] = rating.votes ? ['(', ')'] : ['', ''] 
+        span.rating__votes= `${prefix}${rating.votes || ''}${suffix}` 
+  
+  section.store__info
+    .container
+      .store__block
+        if store.dishes
+          h3.store__block__title Popular Dishes
+          p.store__block__info= store.dishes
+      .store__block
+        if store.highlights
+          h3.store__block__title More Info
+          ul.store__info__list
+            .container
+              -const highlights = store.highlights.split(',');
+                each item in highlights
+                  li.store__info__list__item= item
+    
+  section.store__reviews
+    .container.container--reviews
+      h3.section__title Reviews
+      if(store.reviews) 
+        each review in store.reviews
+          +review(review)
+      else
+        p No Reviews Yet!! Just you wait

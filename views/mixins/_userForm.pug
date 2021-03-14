@@ -1,0 +1,11 @@
+mixin userForm(user = {})
+  form.form(action="/user/edit" method="POST" enctype="multipart/form-data") 
+    h3.form__title Edit Account
+    input.input(type="text" name="name" placeholder="Full Name" value=user.name required)
+    input.input(type="email" name="email" placeholder="Email" value=user.email required)
+    label(for="bio") Your Bio
+    textarea.input(name="bio" id="bio" required)= user.bio
+    label(for="photo") Photo
+    input.input(type="file" name="photo" id="photo" accept="image/*")
+    input.btn.btn--primary(type="submit"  value="Submit")
+  

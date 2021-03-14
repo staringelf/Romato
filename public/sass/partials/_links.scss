@@ -1,0 +1,25 @@
+.quick_search + .quick_search{
+  margin-top: 5px;
+}
+
+.quick_searches {
+  list-style: inside;
+  margin-bottom: 1em;
+}
+
+.activity__link{
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+
+  &:active{
+    background: linear-gradient(270deg, rgb(247, 235, 236) 0%, rgba(251, 246, 247, 0) 92.47%);
+  }
+}
+
+.link {
+  &--logo {
+    padding: .1em .5em .1em 0;
+  }
+}

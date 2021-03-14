@@ -1,0 +1,31 @@
+extends layout
+
+block main 
+  .container.container--dashboard  
+    .dashboard
+      .user
+        .user__avatar
+          if user.photo
+            img(src=`/uploads/users/${user.photo}`)
+          else
+            img(src="/images/photos/romato/wine_2x.webp")
+        .user__info
+          h2.user__name= user.name
+          p.user__bio= user.bio 
+      hr.divider__hr
+      .dashboard__blocks
+        -const blocks = { 'Activity': ['Recent', 'Bookmarks', 'Restaurants', 'Reviews'],  'Actions': ['Edit Profile', 'Add Restaurant', 'Manage Restaurants'] }
+        each val, key in blocks
+          .dashboard__block
+            h3.dashboard__title= key 
+            .dashboard__actions
+              each act in val
+                .dashboard__action
+                  a.activity__link(href=`/user/${h.slug(act)}`)= act
+                  span(class="icon icon--chevron")
+                    != h.icon('chevron-right')
+                hr.divider__hr.divider__hr--action
+      
+      .dashboard__footer
+        a.dashboard__footer__link.delete-account.btn--secondary Delete Account
+        a.dashboard__footer__link.log-out.btn--secondary(href="/logout") Log Out

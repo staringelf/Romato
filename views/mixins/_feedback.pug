@@ -1,0 +1,16 @@
+mixin feedback(store)
+  .container--feedback
+    form.feedback.hide(action=`/reviews/${store._id}` method="POST")
+      span.close-feedback x
+      h3 Write your review
+      .feedback__rating
+        each num in [5,4,3,2,1]
+          input(type='radio' name='rating' id=`rating-${num}` value=num required)
+          label(for=`rating-${num}`)
+        .feedback__emoji-wrapper
+          .feedback__emoji
+            each n in [0, 1, 2, 3, 4, 5]
+              != h.icon(`rating-${n}`)
+      .review
+        textarea.review__textarea(name='review' width='100%' rows='1' tabindex='1')
+      input.btn.btn--primary(type='submit' value='Add a Review')

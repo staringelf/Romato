@@ -1,0 +1,23 @@
+
+$clr--red: rgb(226, 55, 68);
+$clr--dark: rgb(28, 28, 28);
+$clr--grey: rgb(105, 105, 105);
+$clr--gold: rgb(244, 162, 102);
+$clr--red: rgb(236, 70, 84);
+$clr--red--fade: #ec465470;
+$clr--white: #fff;
+
+$linear-grad: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 85%);
+$linear-grad-x-y: linear-gradient(119deg, rgba(0, 0, 0, 0.7) 2.6%, rgba(0, 0, 0, 0) 64%), linear-gradient(305deg, rgba(0, 0, 0, 0.7) 0.2%, rgba(0, 0, 0, 0) 54%);
+$linear-grad-x: linear-gradient(305.27deg, rgba(0, 0, 0, 0.7) 0.19%, rgba(0, 0, 0, 0) 54.37%);
+
+$shad: rgba(0, 0, 0, 0.2) 0px 8px 6px -6px;
+
+$fs--1: clamp(1.4rem, 20px, 2rem);
+$fs--2: clamp(1.1rem, 1.4rem + .8vw, 2.1rem);
+$fs--3: clamp(1rem, 1rem + 0.75vw, 1.6rem);
+$fs--4: clamp(.82rem, .8rem + .54vw , 1.15rem);
+// $fs--5: clamp(.7rem, .72rem + .54vw, 1.25rem);
+$fs--5: clamp(.82rem, .8rem + .54vw, 1.25rem);
+$fs--hero: clamp(1.7rem, 1.7rem + .7vw, 2.3rem);
+$fs--small: clamp(.7rem, .7rem + .25vw, 1rem);

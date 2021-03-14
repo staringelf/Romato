@@ -1,0 +1,14 @@
+.pagination{
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  
+  > *{
+    display: grid;
+    place-items: center;
+    flex: 1 1 30px;
+  }
+}

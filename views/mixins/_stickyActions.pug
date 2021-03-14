@@ -1,0 +1,19 @@
+mixin stickyActions(store = {})
+  
+  -const [ lng, lat ] = store.location.coordinates;
+  section.store__actions
+    a.store__action.store__action--feedback 
+      i.icon.icon--rating(size="22" color="#696969")
+        != h.icon('star')
+      span Review
+      
+    a.store__action(href=`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`)
+      i.icon.icon--rating(size="22" color="#696969")
+        != h.icon('direction')
+      span Direction
+
+
+    a.store__action(href=`tel:${store.contact}`)
+      i.icon.icon--call(size="22" color="#696969")
+        != h.icon('phone')
+      span Call

@@ -1,0 +1,14 @@
+mixin signupForm (body = {})
+  .container.container--form.hide
+    form.form(action="/signup" method="POST") 
+      h3.form__title Sign Up
+      input.input(type="text" name="name" placeholder="Full Name" value=body.name )
+      input.input(type="email" name="email" placeholder="Email" required value=body.email )
+      input.input(type="password" name="password" placeholder="Password" required)
+      input.input(type="password" name="password-confirm" placeholder="Confirm Password" required)
+      input.btn.btn--primary(type="submit"  value="Sign Up")
+    .divider
+      hr.divider__hr
+      span.divider__span or
+      p.divider__text Already have an account ? 
+        button.btn.btn--secondary.toggle-form  Login

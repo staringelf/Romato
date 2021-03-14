@@ -1,0 +1,33 @@
+mixin storeForm(store = {})  
+    form.form.form--restaurant(action=`/add/${store._id || ''}` method="POST" enctype="multipart/form-data") 
+      h3.form__title Add Restaurant
+      label(for="name") Name
+      input.input(type="text" name="name" placeholder="Name" tom value=store.name)
+      label(for="description") Description
+      textarea.input(name="description" tom)=store.description
+      label(for ="address") Address
+      input.input(type="text" name="location[address]" placeholder="S.C.O 32, Lounge State, CHD..."  value=store.location && store.location.address tom)
+      label(for="longitude") Longitude
+      input.input(type="text" name="location[coordinates][0]" value=(store.location && store.location.coordinates[0]) tom)
+      label(for="latitude") Latitude
+      input.input(type="text" name="location[coordinates][1]" value=(store.location && store.location.coordinates[1]) tom)
+      label(for="photo") Photo
+      input.input(type="file" name="photo" id="photo" accept="image/*" )
+      label(for ="dishes") Dishes 
+        span.important *
+      textarea.input(name="dishes" placeholder="Red Velvet, Tacos, Pizza, Samosa, Cappchino")=store.dishes
+      label(for ="highlights") Highlights 
+        span.important *
+      textarea.input(name="highlights" placeholder="Home Deliver, Craft Beer, Dance Floor")=store.highlights
+      label(for="contact") Contact
+      input.input(type="tel" name="contact" tom value=store.contact)
+      label(for="time-open") Opening Time 
+      input.input(type="time" name="timings[0]" tom value=(store.timings && store.timings[0]))
+      label(for="time-close") Closing Time 
+      input.input(type="time" name="timings[1]" tom value=(store.timings && store.timings[1]))
+      input.btn.btn--primary.btn--small(type="submit"  value=`${store.name ? 'Edit Store' : 'Add Store'}`)
+    
+      ul.rules 
+        li.rule
+          p <em>* Must be a comma separated list</em>
+      hr.divider__hr

@@ -1,0 +1,40 @@
+.hero{
+  background-image: url('../images/photos/romato/hero.jpg'), $linear-grad-x-y;
+  height: max(50vh, 400px);
+  display: grid;
+  place-items: center;
+  background-position: -200px 0;
+  
+  &__box{
+    width: 90%;
+    margin: 0 auto;
+    color: $clr--white;
+  }
+
+  &--store {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    height: 70vh;
+    min-height: 500px;
+  }
+  
+  &--home{
+    height: 70vh;
+    min-height: 600px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .hero{
+    background-position: center;  
+    height: 60vh;
+    min-height: 500px;
+  
+    &--home{
+      height: 60vh;
+      min-height: 700px;
+    }
+  
+  }
+} 

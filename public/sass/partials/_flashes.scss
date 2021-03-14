@@ -1,0 +1,48 @@
+.flash {
+  background: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  margin-top: .5em;
+  margin-bottom: .5em;
+  padding: 1em 1.1em;
+  position: relative;
+  z-index: 1;
+  border-radius: 3px;
+  display: flex;
+  
+  
+  &__text {
+    flex: 1;
+  }
+  &__remove {
+    background: none;
+    border:0;
+    &:hover {
+      color: #ffc40e;
+    }
+  }
+  &:after {
+    content: '';
+    display: block;
+    background: white;
+    position: absolute;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    top: 5px;
+    left: 5px;
+    z-index: -1;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.1);
+    border-radius: 3px;
+  }
+  &--success {
+    background: #d2ff52;
+  }
+  &--error {
+    background: #f84f31;
+  }
+  &--info {
+    background: rgb(240, 230, 100);
+  }
+  p {
+    margin: 0;
+  }
+}
