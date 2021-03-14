@@ -25,8 +25,7 @@ const helper = {
   confirmOwner(req, res, store, user) {
     console.log('Checking Access')
     if(!store.author.equals(user._id)){
-      req.flash('error', 'Only Owner can edit the stores');
-      return res.redirect('back');
+      throw Error('Forbidden Waters! You must own a store in order to edit it!');
     }
   },
   
