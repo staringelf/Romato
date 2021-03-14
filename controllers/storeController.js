@@ -24,7 +24,7 @@ const helper = {
   
   confirmOwner(req, res, store, user) {
     console.log('Checking Access')
-    if(!store.author._id.equals(user._id)){
+    if(!store.author.equals(user._id)){
       req.flash('error', 'Only Owner can edit the stores');
       return res.redirect('/user/dashboard');
     }
