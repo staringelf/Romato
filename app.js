@@ -15,7 +15,7 @@ require('./handlers/passport');
 
 const app = express();
 
-//Specifying the template engine  
+//the template engine  
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 //Parse HTTP request cookies for Passport
 app.use(cookieParser());
 
+//session
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -41,7 +42,7 @@ app.use(passport.session());
 //Flash Middleware
 app.use(flash());
 
-//Passing to templates
+//Local Variables
 app.use((req, res, next) => {
   res.locals.h = helpers;
   res.locals.flashes = req.flash();
@@ -61,12 +62,15 @@ app.use('/', routes);
 //If routes don't work, we 404 them and forward to errorHandler
 app.use(errorHandlers.notFound);
 
+//Flashing Errors
 app.use(errorHandlers.flashValidationErrors);
 
+//Errors for development
 if(app.get('env') === 'development') {
     app.use(errorHandlers.developmentErrors);
 };
 
+//Errors for production
 app.use(errorHandlers.productionErrors);
 
 module.exports = app;

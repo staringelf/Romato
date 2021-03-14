@@ -8,6 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 const multer = require('multer');
 const { body, validationResult } = require('express-validator');
 
+//a utility object to help the exports
 const helper = {
   multerOpts: {
     storage: multer.memoryStorage(),
@@ -25,7 +26,7 @@ const helper = {
     console.log('Checking Access')
     if(!store.author._id.equals(user._id)){
       req.flash('error', 'Only Owner can edit the stores');
-      res.redirect('/user/dashboard');
+      return res.redirect('/user/dashboard');
     }
   },
   
@@ -38,7 +39,7 @@ const helper = {
   },
 }
 
-
+//Validation rules
 exports.validationRules = {
   store () {
     return [
@@ -56,6 +57,7 @@ exports.validationRules = {
   },
 };
 
+//Handling Validation Errors
 exports.handleValidationErrors = (req, res, next) => {
   const { errors } = validationResult(req);
   if(errors.length){
@@ -67,12 +69,13 @@ exports.handleValidationErrors = (req, res, next) => {
   next();
 };
 
+//The Home Page
 exports.homePage = (req, res) => {
   
   const quickSearches = ['Pizza and Pasta', 'Sweet Tooth', 'Burgers', 'Health Is Wealth'];
   
   const collections = [
-    { name: 'Best of Chandigarh', slug: 'collection/top' }, 
+    { name: 'Top Rated', slug: 'collection/top' }, 
     { name: 'Newly Opened', slug: 'collection/new' },
     { name: 'Popular', slug: 'collection/popular' },
     { name: 'All Restaurants', slug: 'stores/page/1' }
@@ -80,7 +83,7 @@ exports.homePage = (req, res) => {
   res.render('index', { title: 'Welcome!', quickSearches, collections });
 };
 
-//Not the API, 
+//Quick Searches
 exports.quickSearch = async (req, res) => {
   const stores = await Store.quickSearch(req.query.q);
   res.render('stores', { title: req.query.q , stores });
@@ -102,13 +105,14 @@ exports.quickSearchByLocation = async (req, res) => {
   res.render('stores', { title: 'Near You', stores, showRatings: false });
 };
 
+//Get All Stores
 exports.getStores = async (req, res) => {
   const page = req.params.page;
-  const limit = 12;
-  const skip = limit * (page - 1);
+  const limit = 12; //results per page
+  const skip = limit * (page - 1); //skip specified results
   const storesPromise = Store
     .getStores()
-    .sort({ name: 1 })
+    .sort({ name: 1 }) //sort by name
     .skip(skip)
     .limit(limit);
   const countPromise = Store.countDocuments();
@@ -117,11 +121,13 @@ exports.getStores = async (req, res) => {
   res.render('stores', { title: 'All Restaurants', stores, page, pages, count });
 };
 
+//Render collections
 exports.collection = async (req, res) => {
   const stores = await Store.find();
   res.render('collection', { title: req.params.name, stores });
 };
 
+//Render a store page
 exports.getStore = async (req, res) => {
   const store = await Store.findOne({ slug: req.params.slug }).populate('reviews').exec();
   //return res.json(store.reviews);
@@ -135,12 +141,13 @@ exports.getStore = async (req, res) => {
   //res.render('store', { title: store.name , store});
 };
 
+//Render stores linked to user
 exports.getStoresByUser = async (req, res) => {
   const stores = await Store.getStoresByUser( { _id: req.user._id } );
   res.render('stores', { title: 'Your Stores', stores });
 };
 
-
+//Return user bookmarked stores
 exports.getBookmarkedStores = async (req, res) => {
   //const stores = await Store.find({
     //_id: { $in: req.user.bookmarks }
@@ -149,16 +156,19 @@ exports.getBookmarkedStores = async (req, res) => {
   res.render('stores', { title: 'Your Bookmarks', stores });
 };
 
+//Return recently viewed stores 
 exports.getRecentStores = async (req, res) => {
   const stores = await Store.getRecentStores({ recents: req.user.recents });
   res.render('stores', { title: 'Recent Stores', stores });  
 };
 
+//render popular stores based on view count
 exports.getPopularStores = async (req, res) => {
   const stores = await Store.getPopularStores().limit(12);
   res.render('stores', { title: 'Popular', stores })
 };
 
+//REST API
 exports.searchStores = async (req, res) => {
   const stores = await Store
   //find related stores
@@ -180,6 +190,7 @@ exports.searchStores = async (req, res) => {
   res.json(stores);
 };
 
+//REST API
 exports.searchStoresByLocation = async (req, res) => {
   const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
   const stores = await Store.find({
@@ -196,18 +207,22 @@ exports.searchStoresByLocation = async (req, res) => {
   res.json(stores);
 };
 
+//Add store page
 exports.addStore = (req, res) => {
   res.render('editStore', { title: 'Add Store' });
 };
 
+//Edit Store Page
 exports.editStore = async (req, res) => {
   const store = await Store.findOne({ _id: req.params.id }).exec();
   helper.confirmOwner(req, res, store, req.user);
   res.render('editStore', { title: `Edit ${store.name}`, store } );
 };
 
+//Photo upload using multer
 exports.upload = multer(helper.multerOpts).single('photo');
 
+//Resizing the photo
 exports.resize = async (req, res, next) => {
   if(!req.file){
     return next();
@@ -222,6 +237,7 @@ exports.resize = async (req, res, next) => {
   next();
 };
 
+//formats store data entered by user to match database schema
 exports.formatStoreData = (req, res, next) => {
   const timings = req.body.timings
   if(req.body.dishes){
@@ -246,6 +262,7 @@ exports.formatStoreData = (req, res, next) => {
   next();
 };
 
+//creates a new store
 exports.createStore = async (req, res) => {
   req.body.author = req.user._id;
   const store = new Store(req.body);
@@ -255,6 +272,7 @@ exports.createStore = async (req, res) => {
   res.redirect(`/store/${store.slug}`);
 };
 
+//updates a store
 exports.updateStore = async (req, res) => {
   req.body.location.type = 'Point';
   const store = await Store.findOne({ _id: req.params.id }).exec();
@@ -265,6 +283,7 @@ exports.updateStore = async (req, res) => {
   res.redirect(`/user/store/${store.id}/edit`);
 };
 
+//bookmark store (REST API)
 exports.bookmarkStore = async (req, res) => {
   const bookmarks = req.user.bookmarks.map(obj => obj.toString());
   const operation = bookmarks.includes(req.params.id) ? '$pull': '$addToSet';
@@ -276,6 +295,7 @@ exports.bookmarkStore = async (req, res) => {
   res.json(user);
 };
 
+//register store views and update user's recent
 exports.registerViews = async (req, res) => {
   const limit = -10;
   let userPromise;
@@ -318,11 +338,13 @@ exports.registerViews = async (req, res) => {
 }
 */
 
+//return top rated stores based on average rating count
 exports.getTopStores = async (req, res) => {
   const stores = await Store.findTopStores();
   res.render('collection', { title: 'Top', stores });
 };
 
+//filter stores by date by the specified limit
 exports.getNewStores = async (req, res) => {
   const limit = 3;
   const limiter = new Date();

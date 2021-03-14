@@ -13,14 +13,17 @@ db.on('error', (err) => {
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
+//models
 require('./models/Review');
 require('./models/Store');
 require('./models/User');
 
 const app = require('./app');
 
+//port
 app.set('port', process.env.PORT || 7777);
 
+//server
 const server = app.listen(app.get('port'), () => {
   console.log(`Server running → PORT ${server.address().port}`);
 })
