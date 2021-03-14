@@ -26,7 +26,7 @@ const helper = {
     console.log('Checking Access')
     if(!store.author.equals(user._id)){
       req.flash('error', 'Only Owner can edit the stores');
-      return res.redirect('/user/dashboard');
+      return res.redirect('back');
     }
   },
   
