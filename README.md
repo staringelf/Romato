@@ -7,7 +7,7 @@ A full stack web app that lets you create account, search restaurants, add your 
   [Romato Web App](http://romato.herokuapp.com/)
 
 
-##Search
+## Search
   - Search restaurants by keywords
   - Search nearby restaurants by location (or just add one and then search)
 
