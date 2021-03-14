@@ -324,7 +324,7 @@ exports.getTopStores = async (req, res) => {
 };
 
 exports.getNewStores = async (req, res) => {
-  const limit = 2;
+  const limit = 3;
   const limiter = new Date();
   limiter.setDate(limiter.getDate() - limit);
   const stores = await Store.find({ created: { $gt: limiter } }).sort({ 'created': -1 });
