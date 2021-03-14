@@ -1,6 +1,6 @@
 {
-  "name": "romato",
-  "version": "1.0.0",
+  "name": "Oishi",
+  "version": "0.0.0",
   "private": true,
   "engines": {
     "node": "13.14.0"
@@ -9,7 +9,7 @@
     "start": "node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
     "dev": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
-    "assets": "webpack --config webpack.config.js",
+    "assets": "webpack --config webpack.config.js"
   },
   "browserslist": "last 3 versions",
   "dependencies": {

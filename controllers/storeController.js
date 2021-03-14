@@ -108,6 +108,7 @@ exports.getStores = async (req, res) => {
   const skip = limit * (page - 1);
   const storesPromise = Store
     .getStores()
+    .sort({ name: 1 })
     .skip(skip)
     .limit(limit);
   const countPromise = Store.countDocuments();

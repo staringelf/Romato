@@ -125,22 +125,6 @@ storeSchema.statics.quickSearch = function (query = 'tasty') {
   ]);
 };
 
-storeSchema.statics.quickSearchByLocation = function (coordinates = {}) {
-  return this.aggregate ([
-     { $near: { $geometry: { type: 'Point', coordinates } } },
-     { $maxDistance: 1000000 },
-    //Look up stores and populate reviews
-    { $lookup: { from: 'reviews', localField: '_id', foreignField: 'store', as: 'reviews' } },
-    //adds on a averageRatingField
-    { $addFields: {
-        avgRating: { $avg: '$reviews.rating' },
-        votes: { $size: '$reviews' }
-      }
-    },
-  ]);
-};
-
-
 storeSchema.statics.getStoresByUser = function (user) {
   return this.aggregate ([
     //Get the restaurants authorized by current user
