@@ -25,4 +25,4 @@ exports.formatTime = (timeStr) => {
   return newTimeStr;
 }
 
-exports.projectName = 'Oishi';
+exports.projectName = 'Romato' || 'Oishi';
