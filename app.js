@@ -9,11 +9,32 @@ const { promisify } = require('es6-promisify');
 const helpers = require('./helpers');
 const routes = require('./routes/index');
 const errorHandlers = require('./handlers/errorHandlers');
+const httpHandler = require('./handlers/httpHandler');
 
 //Strategy
 require('./handlers/passport');
 
 const app = express();
+
+if(app.get('env') === 'production'){
+  // Enable Trust Proxy
+  app.enable('trust proxy');
+
+  // Disable the x-Powered-By Header
+  app.disable('x-powered-by');
+  
+  // Custom middleware for redirecting to HTTPS
+  app.use(httpHandler.redirectToHttps);
+}
+
+app.use(function(request, response, next) {
+
+    if (process.env.NODE_ENV != 'development' && !req.secure) {
+       return response.redirect("https://" + req.headers.host + req.url);
+    }
+
+    next();
+})
 
 //the template engine  
 app.set('view engine', 'pug');
