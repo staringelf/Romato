@@ -27,14 +27,6 @@ if(app.get('env') === 'production'){
   app.use(httpHandler.redirectToHttps);
 }
 
-app.use(function(request, response, next) {
-
-    if (process.env.NODE_ENV != 'development' && !req.secure) {
-       return response.redirect("https://" + req.headers.host + req.url);
-    }
-
-    next();
-})
 
 //the template engine  
 app.set('view engine', 'pug');
