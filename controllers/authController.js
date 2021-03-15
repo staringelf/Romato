@@ -58,7 +58,7 @@ exports.forgotPassword = async (req, res) => {
     subject: 'Password reset',
     resetPasswordLink
   });
- req.flash('success', `You have been emailed a password reset link <a href=${resetPasswordLink}>A</a>.`);
+ req.flash('success', `You have been emailed a password reset link!`);
   
   //Redirecting to login page
   res.redirect('/signin');
@@ -95,7 +95,7 @@ exports.updatePassword = async (req, res) => {
   
   //Logging in
   await req.login(user);
-  req.flash('success', '💃 Nice! Your password has been reset! You are now logged in!');
+  req.flash('success', ' Your password has been reset! You are now logged in!');
   res.redirect('/');
 };
 
