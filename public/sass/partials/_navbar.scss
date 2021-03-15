@@ -7,7 +7,7 @@
 .main-nav{
   display: flex;
   justify-content: space-between;
-  padding: 10px 0px 10px 0px;
+  padding: 15px 0px 15px 0px;
   align-items: center;
 }
 
@@ -29,5 +29,8 @@
 @media only screen and (min-width: 800px) {
   .nav__signin {
     display: inline-block;
+  }
+  .main-nav{
+    padding: 12px 0 12px 0;
   }
 }

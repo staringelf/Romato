@@ -26,10 +26,10 @@ block navbar
               i.icon.icon--avatar(color="#ED5A68" size="18")
                 != h.icon('avatar')
 block main
-  header.hero
-    .hero__box
+  header.hero.hero--home
+    .hero__box.hero__box--home
       h2.section__title.section__title--hero.section__title--home romato
-      p.section__subtitle.section__subtitle--hero Discover the best food &amp; drinks in your city
+      p.section__subtitle.section__subtitle--hero.section__subtitle--home Discover the best food &amp; drinks in your city
       +searchBar()
   section.food_cards
     .container

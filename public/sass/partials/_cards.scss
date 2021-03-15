@@ -93,8 +93,8 @@
 
 
   &--collection {
-    background-image: url('../images/photos/romato/trending.jpg');
-    background-image: url('../images/photos/romato/trending.jpg'), $linear-grad;
+    background-image: url('../images/photos/romato/new.jpg');
+    background-image: url('../images/photos/romato/new.jpg'), $linear-grad;
     @include background-image;
     background-position: left;
     background-blend-mode: multiply;

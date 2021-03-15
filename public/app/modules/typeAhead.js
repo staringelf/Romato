@@ -57,7 +57,7 @@ const typeAheadApp =  {
    
   // handle keyboard inputs
   handleKeyboardInputs (e) {
-    if (![38, 40, 13].includes(e.keyCode)) {
+    if (![38, 40, 13, 27].includes(e.keyCode)) {
       return; // nah
     }
     const activeClass = 'search__result--active';
@@ -74,6 +74,10 @@ const typeAheadApp =  {
       next = items[items.length - 1];
     } else if (e.keyCode === 13 && current.querySelector('.search__link').href) {
       window.location = current.querySelector('.search__link').href;
+      return;
+    } else if (e.keyCode === 27){
+      e.target.value = '';
+      this.searchResults.style.display = 'none';
       return;
     }
     if (current) {

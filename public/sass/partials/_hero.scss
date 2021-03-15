@@ -15,13 +15,22 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat; 
-    height: 70vh;
-    min-height: 500px;
+    height: 53vh;
+    min-height: 300px;
   }
   
   &--home{
-    height: 70vh;
-    min-height: 600px;
+    display: block;
+    padding-top: 45%;
+    height: 90vh;
+    min-height: 350px;
+    max-height: 700px;
+    position: relative;
+  }
+  
+  &__box--home{
+   display: grid;
+   place-items: center;
   }
 }
 
@@ -32,9 +41,15 @@
     min-height: 500px;
   
     &--home{
+      display: grid;
+      align-items: center;
       height: 60vh;
-      min-height: 700px;
+      padding: 0;
     }
-  
+    
+    &__box--home{
+      place-items: unset;
+    }
+    
   }
 } 
