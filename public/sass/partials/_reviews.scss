@@ -1,5 +1,8 @@
 .review {
-  background: white;
+  background: $clr--white;
+  border: 1px solid $clr--grey;
+  border-bottom: 1px solid $clr--grey;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   margin-bottom: 2rem;
   max-width: 600px;
   position: relative;

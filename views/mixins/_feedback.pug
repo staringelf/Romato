@@ -11,6 +11,6 @@ mixin feedback(store)
           .feedback__emoji
             each n in [0, 1, 2, 3, 4, 5]
               != h.icon(`rating-${n}`)
-      .review
+      .review__textarea
         textarea.review__textarea(name='review' width='100%' rows='1' tabindex='1')
       input.btn.btn--primary(type='submit' value='Add a Review')

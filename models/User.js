@@ -26,7 +26,10 @@ const userSchema = new Schema({
     default: 'Live to the fullest!'
   },
 
-  photo: String,
+  photo: {
+    type: String,
+    default: 'wine_2x.webp'
+  },
   
   resetPasswordToken: String,
   
