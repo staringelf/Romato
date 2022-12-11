@@ -39,6 +39,8 @@
     background-position: center;  
     height: 60vh;
     min-height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
   
     &--home{
       display: grid;
