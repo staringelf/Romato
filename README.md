@@ -6,6 +6,8 @@ A full stack web app that lets you create account, search restaurants, add your 
 ## LiveDemo
   [Romato Web App](https://romato.glitch.me/)
 
+https://user-images.githubusercontent.com/40386632/206923768-7e59c2b7-e652-41a2-9e00-d941b2438f9e.mp4
+
 
 ## Search
   - Search restaurants by keywords
@@ -17,3 +19,9 @@ A full stack web app that lets you create account, search restaurants, add your 
  - Curated collection of popular restaurants based on view count
  - Curated colllection of newly opened restaurants 
  - All restaurants with pagination
+
+
+
+
+
+
