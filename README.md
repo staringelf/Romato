@@ -4,7 +4,7 @@ Romato: A Zomato Clone (well, not quite)
 A full stack web app that lets you create account, search restaurants, add your own restaurants, bookmark them, rate them
 
 ## LiveDemo
-  [Romato Web App](https://romato.herokuapp.com/)
+  [Romato Web App](https://romato.glitch.me/)
 
 
 ## Search
